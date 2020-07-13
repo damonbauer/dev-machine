@@ -20,12 +20,13 @@
       - iterm2
       - jetbrains-toolbox
       - postman
-      - rectangle
       - quicklook-json
       - qlcolorcode
       - qlimagesize
       - qlmarkdown
       - qlstephen
+      - rectangle
+      - sublime-text
 
 - name: Initialize Homebrew bash completion
   blockinfile:

@@ -8,3 +8,14 @@
     - node
     - followup
   user: damonbauer
+  vars_prompt:
+    - name: git_name
+      prompt: Enter your name to be displayed in Git
+      private: no
+    - name: git_email
+      prompt: Enter your email to used in Git
+      private: no
+    - name: node_version
+      prompt: What version of node would you like to install?
+      default: 12.18.2
+      private: no

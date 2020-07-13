@@ -5,9 +5,11 @@
 - name: Create Git config
   git_config: scope=global name={{ item.name }} value={{ item.value }}
   with_items:
-    - { name: 'user.name', value: 'Damon Bauer' }
+    - { name: 'user.name', value: '{{ git_name }}' }
+    - { name: 'user.email', value: '{{ git_email }}' }
     - { name: 'core.pager', value: 'diff-so-fancy | less --tabs=1,5 -R' }
     - { name: 'core.excludesfile', value: '{{ ansible_env.HOME }}/.gitignore_global' }
+    - { name: 'core.editor', value: 'nano' }
     - { name: 'color.branch', value: 'always' }
     - { name: 'color.diff', value: 'auto' }
     - { name: 'color.interactive', value: 'always' }
@@ -31,8 +33,11 @@
     - { name: 'alias.force', value: 'push -f' }
     - { name: 'alias.last', value: 'log -1 HEAD' }
     - { name: 'alias.undo-commit', value: 'reset HEAD~' }
+    - { name: 'alias.cp', value: 'cherry-pick' }
+    - { name: 'alias.prune', value: 'fetch --prune' }
     - { name: 'format.pretty', value: 'oneline' }
-    - { name: 'push.default', value: 'simple' }
+    - { name: 'push.default', value: 'current' }
     - { name: 'push.followTags', value: 'true' }
     - { name: 'tag.sort', value: 'version:refname' }
     - { name: 'pull.rebase', value: 'true' }
+    - { name: 'branch.autosetuprebase', value: 'always' }
