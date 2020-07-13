@@ -1,0 +1,4 @@
+---
+- name: Done!
+  debug:
+    msg: Yahtzee! You should be good to go. You might have to allow certain apps the first time they're used (such as the QuickLook plugins). There might be a confirmation popup in Finder or you might have to "Open"/"Open Anyway" in Preferences > Security & Privacy > General > Allow apps downloaded from

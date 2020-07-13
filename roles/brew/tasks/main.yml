@@ -1,0 +1,52 @@
+---
+- name: Install packages from Homebrew
+  homebrew:
+    state: present
+    name:
+      - bash-git-prompt
+      - bat
+      - diff-so-fancy
+      - exa
+      - git
+
+- name: Install packages from Homebrew Cask
+  ignore_errors: yes
+  homebrew_cask:
+    state: present
+    accept_external_apps: yes
+    greedy: yes
+    name:
+      - imageoptim
+      - iterm2
+      - jetbrains-toolbox
+      - postman
+      - rectangle
+      - quicklook-json
+      - qlcolorcode
+      - qlimagesize
+      - qlmarkdown
+      - qlstephen
+
+- name: Initialize Homebrew bash completion
+  blockinfile:
+    path: "{{ ansible_env.HOME }}/.bash_profile"
+    block: |
+      if type brew &>/dev/null; then
+        HOMEBREW_PREFIX="$(brew --prefix)"
+        if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+          source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+        else
+          for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+            [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+          done
+        fi
+      fi
+
+- name: Initialize bash-git-prompt
+  blockinfile:
+    path: "{{ ansible_env.HOME }}/.bash_profile"
+    block: |
+      if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+        __GIT_PROMPT_DIR="/usr/local/opt/bash-git-prompt/share"
+        source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
+      fi

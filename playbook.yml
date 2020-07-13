@@ -1,0 +1,10 @@
+--- 
+- 
+  hosts: all
+  roles: 
+    - brew
+    - git
+    - mac
+    - node
+    - followup
+  user: damonbauer
